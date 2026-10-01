@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bastian Ortubia | Personal Trainer en Meta GYM</title>
+<meta name="description" content="Entrenamiento personalizado con Bastian Ortubia, Profesor de Educación Física titulado. Planes individuales, clases grupales y rutina digital.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== COLORES (cámbialos aquí y se actualiza toda la página) ===== */
+  :root{
+    --fondo:#05090B;
+    --fondo-2:#091015;
+    --tarjeta:#0E171D;
+    --borde:#1B2830;
+    --texto:#F2F5F7;
+    --texto-suave:#A9B6BE;
+    --acento:#5CB8FF;
+    --degradado:linear-gradient(90deg,#7FE3E6,#3A6FE0);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--fondo);color:var(--texto);font-family:'Archivo',system-ui,sans-serif;line-height:1.55}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  a:focus-visible{outline:3px solid var(--acento);outline-offset:3px}
+  .contenedor{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+  .display{font-family:'Anton',sans-serif;font-style:italic;font-weight:400;text-transform:uppercase;line-height:1;margin:0}
+  .degradado{background:var(--degradado);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .suave{color:var(--texto-suave)}
+  .boton{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;background:var(--acento);color:var(--fondo);font-weight:700;text-decoration:none}
+  .boton:hover{filter:brightness(1.1)}
+  .boton-borde{background:transparent;color:var(--texto);border:1px solid #3A4A55}
+
+  /* Barra superior */
+  header{position:sticky;top:0;z-index:10;background:rgba(5,9,11,.92);backdrop-filter:blur(8px);border-bottom:1px solid #16222A}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .marca{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .marca img{width:40px;height:40px}
+  .marca span{font-family:'Anton',sans-serif;font-style:italic;font-size:19px;text-transform:uppercase}
+  .nav-links{display:flex;align-items:center;gap:28px;font-weight:600}
+  .nav-links .texto{text-decoration:none;display:none}
+  .nav-links .boton{min-height:44px;padding:0 18px}
+
+  /* Portada */
+  .hero{padding:40px 0 64px}
+  .hero .contenedor{display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px}
+  .hero-logo{width:250px;height:250px}
+  .etiqueta{color:var(--acento);font-weight:700;letter-spacing:1px}
+  .hero h1{font-size:64px}
+  .hero p{margin:0;font-size:17px;max-width:520px}
+  .hero .boton{width:100%}
+
+  /* Planes */
+  .planes{background:var(--fondo-2);padding:64px 0}
+  .titulo-seccion{text-align:center;margin-bottom:32px}
+  .titulo-seccion h2{font-size:48px}
+  .titulo-seccion p{margin:10px 0 0}
+  .grilla-planes{display:grid;grid-template-columns:1fr;gap:24px}
+  .plan{background:var(--tarjeta);border:1px solid var(--borde);display:flex;flex-direction:column}
+  .plan img{width:100%;height:220px;object-fit:cover}
+  .plan-cuerpo{padding:24px 20px;display:flex;flex-direction:column;gap:16px;flex-grow:1}
+  .plan h3{font-size:32px;color:var(--acento)}
+  .plan p{margin:0;color:#D5DDE2}
+  .precios{margin-top:auto;border-top:1px solid var(--borde);list-style:none;padding:0}
+  .precios li{min-height:52px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--borde)}
+  .precios strong{font-size:18px;white-space:nowrap}
+
+  /* Pasos */
+  .pasos{padding:64px 0}
+  .pasos h2{font-size:44px;margin-bottom:28px}
+  .grilla-pasos{display:grid;grid-template-columns:1fr;gap:24px;list-style:none;padding:0;margin:0}
+  .paso{display:flex;gap:16px}
+  .paso .num{font-family:'Anton',sans-serif;font-style:italic;font-size:36px;line-height:1;color:var(--acento)}
+  .paso h3{margin:0 0 4px;font-size:17px}
+  .paso p{margin:0}
+
+  /* Contacto */
+  .contacto{background:var(--fondo-2);padding:64px 0}
+  .contacto .contenedor{display:flex;flex-direction:column;gap:16px}
+  .contacto h2{font-size:44px}
+  .contacto p{margin:0}
+  .botones-contacto{display:flex;flex-direction:column;gap:12px}
+
+  footer{border-top:1px solid #16222A;padding:24px 0;font-size:13px;color:#7D8B94}
+
+  /* ===== COMPUTADOR / TABLET (desde 900px de ancho) ===== */
+  @media (min-width:900px){
+    .contenedor{padding:0 48px}
+    .nav{height:84px}
+    .marca img{width:52px;height:52px}
+    .marca span{font-size:24px}
+    .nav-links .texto{display:inline}
+    .hero{padding:72px 0}
+    .hero .contenedor{display:grid;grid-template-columns:1fr 1fr;gap:64px;text-align:left;align-items:center}
+    .hero-texto{display:flex;flex-direction:column;gap:26px;align-items:flex-start}
+    .hero h1{font-size:104px}
+    .hero p{font-size:19px}
+    .hero .boton{width:auto;min-height:58px;padding:0 36px}
+    .hero-logo{width:440px;height:440px;justify-self:center;order:2}
+    .planes{padding:88px 0}
+    .titulo-seccion h2{font-size:72px}
+    .grilla-planes{grid-template-columns:repeat(3,1fr)}
+    .plan img{height:auto;aspect-ratio:392/456;object-fit:cover}
+    .plan-cuerpo{padding:28px}
+    .pasos h2{font-size:60px}
+    .grilla-pasos{grid-template-columns:repeat(3,1fr);gap:32px}
+    .paso{flex-direction:column;gap:10px}
+    .paso .num{font-size:48px}
+    .contacto .contenedor{flex-direction:row;justify-content:space-between;align-items:center;gap:48px}
+    .contacto h2{font-size:64px}
+    .botones-contacto{flex-direction:row}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="contenedor nav">
+    <a class="marca" href="#">
+      <img src="logo.png" alt="Logo Personal Trainer Bastian Ortubia">
+      <span>Bastian Ortubia</span>
+    </a>
+    <nav class="nav-links">
+      <a class="texto" href="#planes">Planes</a>
+      <a class="texto" href="#contacto">Contacto</a>
+      <a class="boton" href="#planes">Únete</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ===== PORTADA ===== -->
+  <section class="hero">
+    <div class="contenedor">
+      <img class="hero-logo" src="logo.png" alt="Logo: Profesor Bastian Ortubia Domínguez, Personal Trainer, Tu mejor versión">
+      <div class="hero-texto">
+        <div class="etiqueta">Personal Trainer en Meta GYM</div>
+        <h1 class="display degradado">Haz tu cambio hoy mismo</h1>
+        <p class="suave">Profesor de Educación Física titulado. Entrenamiento personalizado de acuerdo a tus condiciones físicas, en Meta GYM o desde donde estés.</p>
+        <a class="boton" href="#planes">ÚNETE AHORA</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PLANES (para cambiar precios, edita los <strong>) ===== -->
+  <section class="planes" id="planes">
+    <div class="contenedor">
+      <div class="titulo-seccion">
+        <h2 class="display degradado">Planes de entrenamiento</h2>
+        <p class="suave">Personalizados de acuerdo a tus condiciones físicas</p>
+      </div>
+      <div class="grilla-planes">
+
+        <article class="plan">
+          <img src="individual.jpg" alt="Entrenamiento individual">
+          <div class="plan-cuerpo">
+            <h3 class="display">Individual</h3>
+            <p>Entrenamiento 100% enfocado en tus objetivos, con atención exclusiva. Disfruta de la máxima comodidad eligiendo un horario totalmente personalizado que se adapte a tu rutina diaria.</p>
+            <ul class="precios">
+              <li><span>Sesión única</span><strong>$10.000</strong></li>
+              <li><span>3 veces por semana</span><strong>$120.000</strong></li>
+              <li><span>4 veces por semana</span><strong>$140.000</strong></li>
+            </ul>
+            <a class="boton" href="https://wa.me/56932393331?text=Hola%20Bastian%2C%20me%20interesa%20el%20plan%20Individual">Quiero este plan</a>
+          </div>
+        </article>
+
+        <article class="plan">
+          <img src="grupales.jpg" alt="Clases grupales">
+          <div class="plan-cuerpo">
+            <h3 class="display">Clases grupales</h3>
+            <p>Motívate y alcanza tus metas entrenando en equipo. Únete a sesiones dinámicas con horario en jornada AM o PM, que coordinamos de forma fácil y rápida en nuestro grupo exclusivo de WhatsApp.</p>
+            <ul class="precios">
+              <li><span>Mensualidad</span><strong>$50.000</strong></li>
+            </ul>
+            <a class="boton" href="https://wa.me/56932393331?text=Hola%20Bastian%2C%20me%20interesan%20las%20clases%20grupales">Quiero este plan</a>
+          </div>
+        </article>
+
+        <article class="plan">
+          <img src="digital.jpg" alt="Rutina digital">
+          <div class="plan-cuerpo">
+            <h3 class="display">Rutina digital</h3>
+            <p>Alcanza tu mejor versión a tu propio ritmo y desde cualquier lugar. Recibe un plan de entrenamiento detallado y estructurado en PDF para que entrenes de forma 100% autónoma.</p>
+            <ul class="precios">
+              <li><span>Plan de entrenamiento</span><strong>$30.000</strong></li>
+            </ul>
+            <a class="boton" href="https://wa.me/56932393331?text=Hola%20Bastian%2C%20me%20interesa%20la%20rutina%20digital">Quiero este plan</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CÓMO PARTIR ===== -->
+  <section class="pasos">
+    <div class="contenedor">
+      <h2 class="display degradado">Cómo partir</h2>
+      <ol class="grilla-pasos">
+        <li class="paso"><div class="num">01</div><div><h3>Escríbeme</h3><p class="suave">Por WhatsApp o Instagram, cuéntame qué buscas.</p></div></li>
+        <li class="paso"><div class="num">02</div><div><h3>Elige tu plan</h3><p class="suave">Individual, grupal o rutina digital, según tu tiempo y objetivos.</p></div></li>
+        <li class="paso"><div class="num">03</div><div><h3>A entrenar</h3><p class="suave">Coordinamos horario y partimos con tu mejor versión.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== CONTACTO (EDITAR: WhatsApp, Instagram, dirección y horarios) ===== -->
+  <section class="contacto" id="contacto">
+    <div class="contenedor">
+      <div>
+        <h2 class="display">¿Partimos esta semana?</h2>
+        <p class="suave">Meta GYM · <a href="https://www.google.com/maps/search/?api=1&amp;query=Meta+GYM+Av.+Argentina+2228+Arica" target="_blank" rel="noopener">Av. Argentina 2228, Arica</a></p>
+      </div>
+      <div class="botones-contacto">
+        <a class="boton" href="https://wa.me/56932393331">Escribir por WhatsApp</a>
+        <a class="boton boton-borde" href="https://www.instagram.com/bastian_ortubia">Instagram @bastian_ortubia</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="contenedor">© 2026 Bastian Ortubia Domínguez · Personal Trainer</div>
+</footer>
+
+</body>
+</html>
