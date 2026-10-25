@@ -14,9 +14,18 @@
       "foto": "individual.jpg",
       "descripcion": "Entrenamiento 100% enfocado en tus objetivos, con atención exclusiva. Disfruta de la máxima comodidad eligiendo un horario totalmente personalizado que se adapte a tu rutina diaria.",
       "precios": [
-        { "detalle": "Sesión única", "precio": "$10.000" },
-        { "detalle": "3 veces por semana", "precio": "$120.000" },
-        { "detalle": "4 veces por semana", "precio": "$140.000" }
+        {
+          "detalle": "Sesión única",
+          "precio": "$11.000"
+        },
+        {
+          "detalle": "3 veces por semana",
+          "precio": "$120.000"
+        },
+        {
+          "detalle": "4 veces por semana",
+          "precio": "$140.000"
+        }
       ]
     },
     {
@@ -24,7 +33,10 @@
       "foto": "grupales.jpg",
       "descripcion": "Motívate y alcanza tus metas entrenando en equipo. Únete a sesiones dinámicas con horario en jornada AM o PM, que coordinamos de forma fácil y rápida en nuestro grupo exclusivo de WhatsApp.",
       "precios": [
-        { "detalle": "Mensualidad", "precio": "$50.000" }
+        {
+          "detalle": "Mensualidad",
+          "precio": "$50.000"
+        }
       ]
     },
     {
@@ -32,14 +44,26 @@
       "foto": "digital.jpg",
       "descripcion": "Alcanza tu mejor versión a tu propio ritmo y desde cualquier lugar. Recibe un plan de entrenamiento detallado y estructurado en PDF para que entrenes de forma 100% autónoma.",
       "precios": [
-        { "detalle": "Plan de entrenamiento", "precio": "$30.000" }
+        {
+          "detalle": "Plan de entrenamiento",
+          "precio": "$30.000"
+        }
       ]
     }
   ],
   "pasos": [
-    { "titulo": "Escríbeme", "texto": "Por WhatsApp o Instagram, cuéntame qué buscas." },
-    { "titulo": "Elige tu plan", "texto": "Individual, grupal o rutina digital, según tu tiempo y objetivos." },
-    { "titulo": "A entrenar", "texto": "Coordinamos horario y partimos con tu mejor versión." }
+    {
+      "titulo": "Escríbeme",
+      "texto": "Por WhatsApp o Instagram, cuéntame qué buscas."
+    },
+    {
+      "titulo": "Elige tu plan",
+      "texto": "Individual, grupal o rutina digital, según tu tiempo y objetivos."
+    },
+    {
+      "titulo": "A entrenar",
+      "texto": "Coordinamos horario y partimos con tu mejor versión."
+    }
   ],
   "contacto": {
     "titulo": "¿Partimos esta semana?",
