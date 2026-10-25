@@ -1,0 +1,95 @@
+media:
+  input: fotos
+  output: fotos
+
+content:
+  - name: contenido
+    label: Contenido de la página
+    type: file
+    path: contenido.json
+    format: json
+    fields:
+      - name: portada
+        label: Portada
+        type: object
+        fields:
+          - name: etiqueta
+            label: Texto pequeño sobre el título
+            type: string
+          - name: titulo
+            label: Título principal
+            type: string
+          - name: descripcion
+            label: Descripción
+            type: text
+          - name: boton
+            label: Texto del botón
+            type: string
+          - name: logo
+            label: Logo
+            type: image
+
+      - name: planes_titulo
+        label: Título de la sección de planes
+        type: string
+      - name: planes_subtitulo
+        label: Subtítulo de la sección de planes
+        type: string
+
+      - name: planes
+        label: Planes
+        type: object
+        list: true
+        fields:
+          - name: nombre
+            label: Nombre del plan
+            type: string
+          - name: foto
+            label: Foto del plan
+            type: image
+          - name: descripcion
+            label: Descripción
+            type: text
+          - name: precios
+            label: Precios
+            type: object
+            list: true
+            fields:
+              - name: detalle
+                label: Detalle (ej. Sesión única)
+                type: string
+              - name: precio
+                label: Precio (ej. $10.000)
+                type: string
+
+      - name: pasos
+        label: Pasos de "Cómo partir"
+        type: object
+        list: true
+        fields:
+          - name: titulo
+            label: Título del paso
+            type: string
+          - name: texto
+            label: Texto
+            type: string
+
+      - name: contacto
+        label: Contacto
+        type: object
+        fields:
+          - name: titulo
+            label: Título
+            type: string
+          - name: gimnasio
+            label: Nombre del gimnasio
+            type: string
+          - name: direccion
+            label: Dirección
+            type: string
+          - name: whatsapp
+            label: WhatsApp (con 569 adelante, sin + ni espacios)
+            type: string
+          - name: instagram
+            label: Usuario de Instagram (sin @)
+            type: string
