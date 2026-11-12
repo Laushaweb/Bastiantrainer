@@ -28,6 +28,23 @@ content:
           - name: logo
             label: Logo
             type: image
+          - name: fotos
+            label: Fotos del carrusel (van cambiando solas)
+            type: object
+            list: true
+            fields:
+              - name: foto
+                label: Foto
+                type: image
+              - name: texto
+                label: Texto sobre la foto (opcional)
+                type: string
+          - name: foto_lateral
+            label: Foto pequeña al lado del carrusel
+            type: image
+          - name: texto_lateral
+            label: Texto de la foto pequeña
+            type: string
 
       - name: planes_titulo
         label: Título de la sección de planes

@@ -47,14 +47,32 @@
   .nav-links .texto{text-decoration:none;display:none}
   .nav-links .boton{min-height:44px;padding:0 18px}
 
-  /* Portada */
-  .hero{padding:40px 0 64px}
-  .hero .contenedor{display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px}
-  .hero-logo{width:250px;height:250px}
+  /* Portada: collage de fotos + carrusel */
+  .hero{padding:0 0 56px;overflow:hidden}
+  .hero .contenedor{display:flex;flex-direction:column;gap:24px}
+  .hero-texto{display:flex;flex-direction:column;gap:14px}
   .etiqueta{color:var(--acento);font-weight:700;letter-spacing:1px}
-  .hero h1{font-size:64px}
-  .hero p{margin:0;font-size:17px;max-width:520px}
-  .hero .boton{width:100%}
+  .hero h1{font-size:54px}
+  .hero p{margin:0;font-size:17px;max-width:540px}
+  .hero-botones{display:flex;gap:12px}
+  .hero-botones .boton{flex:1;padding:0 16px}
+  .collage{margin:0 -20px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:310px 110px;gap:8px}
+  .tile{position:relative;overflow:hidden;background:var(--tarjeta)}
+  .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,9,11,0) 50%,rgba(5,9,11,.8) 100%);pointer-events:none}
+  .rotulo,.puntos,.barra{position:absolute;z-index:2}
+  .rotulo{left:14px;bottom:12px;font-family:'Anton',sans-serif;font-style:italic;text-transform:uppercase;font-size:18px;letter-spacing:.5px;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+  .carrusel{grid-column:1 / -1}
+  .carrusel img{object-position:50% 72%;opacity:0;transition:opacity 1s ease,transform 6s ease;transform:scale(1.03)}
+  .carrusel img.activa{opacity:1;transform:scale(1.09)}
+  .puntos{right:14px;top:16px;display:flex;gap:6px}
+  .puntos button{width:24px;height:24px;padding:10px 0;border:0;background:none;cursor:pointer}
+  .puntos button::before{content:"";display:block;height:4px;background:rgba(242,245,247,.4)}
+  .puntos button.on::before{background:var(--acento)}
+  .barra{left:0;top:0;height:3px;width:33%;background:var(--acento);transition:width .6s ease}
+  .tile-logo{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%,#12212B,#070C10)}
+  .tile-logo::after{display:none}
+  .tile-logo img{position:static;width:96px;height:96px;object-fit:contain}
 
   /* Planes */
   .planes{background:var(--fondo-2);padding:64px 0}
@@ -97,13 +115,22 @@
     .marca img{width:52px;height:52px}
     .marca span{font-size:24px}
     .nav-links .texto{display:inline}
-    .hero{padding:72px 0}
-    .hero .contenedor{display:grid;grid-template-columns:1fr 1fr;gap:64px;text-align:left;align-items:center}
-    .hero-texto{display:flex;flex-direction:column;gap:26px;align-items:flex-start}
+    .hero{padding:56px 0 88px}
+    .hero .contenedor{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:56px;align-items:center}
+    .hero-texto{gap:24px;align-items:flex-start}
     .hero h1{font-size:104px}
     .hero p{font-size:19px}
-    .hero .boton{width:auto;min-height:58px;padding:0 36px}
-    .hero-logo{width:440px;height:440px;justify-self:center;order:2}
+    .hero-botones .boton{flex:none;min-height:58px;padding:0 32px}
+    .collage-wrap{order:2}
+    .collage{margin:0;grid-template-columns:1.35fr 1fr;grid-template-rows:290px 250px;gap:14px;transform:skewX(-8deg)}
+    .carrusel{grid-column:auto;grid-row:1 / 3}
+    .carrusel img{object-position:50% 80%}
+    .tile img,.carrusel img{transform:skewX(8deg) scale(1.2)}
+    .carrusel img.activa{transform:skewX(8deg) scale(1.27)}
+    .tile-logo img{transform:skewX(8deg);width:150px;height:150px}
+    .rotulo,.puntos{transform:skewX(8deg)}
+    .rotulo{left:28px;bottom:20px;font-size:22px}
+    .puntos{right:34px;top:20px}
     .planes{padding:88px 0}
     .titulo-seccion h2{font-size:72px}
     .grilla-planes{grid-template-columns:repeat(3,1fr)}
@@ -136,6 +163,7 @@
   @media (prefers-reduced-motion:reduce){
     .js .reveal{opacity:1;transform:none;transition:none}
     .plan,.plan img,.boton{transition:none}
+    .carrusel img,.carrusel img.activa{transition:opacity .4s ease}
   }
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
@@ -157,15 +185,36 @@
 </header>
 
 <main>
-  <!-- ===== PORTADA ===== -->
+  <!-- ===== PORTADA (fotos del carrusel editables en contenido.json / Pages CMS) ===== -->
   <section class="hero">
     <div class="contenedor">
-      <img class="hero-logo reveal zoom" data-img="portada.logo" src="logo.png" alt="Logo: Profesor Bastian Ortubia Domínguez, Personal Trainer, Tu mejor versión">
+      <div class="collage-wrap reveal zoom">
+      <div class="collage" aria-label="Fotos de las clases">
+        <div class="tile carrusel" id="carrusel" aria-roledescription="carrusel">
+          <img class="activa" src="fotos/grupo-1.jpg" alt="Alumnos entrenando en Meta GYM" data-texto="Entrena en equipo">
+          <img src="fotos/grupo-2.jpg" alt="Grupo de alumnos en Meta GYM" data-texto="Clases en Meta GYM">
+          <img src="fotos/grupo-3.jpg" alt="Alumnos después de entrenar en Meta GYM" data-texto="Tu mejor versión">
+          <div class="barra" id="barra"></div>
+          <div class="rotulo" id="rotulo" aria-live="polite">Entrena en equipo</div>
+          <div class="puntos" id="puntos"></div>
+        </div>
+        <div class="tile">
+          <img data-img="portada.foto_lateral" src="fotos/entrenamiento.jpg" alt="Entrenamiento individual">
+          <div class="rotulo" data-campo="portada.texto_lateral">Entrenamiento individual</div>
+        </div>
+        <div class="tile tile-logo">
+          <img data-img="portada.logo" src="logo.png" alt="Logo: Profesor Bastian Ortubia Domínguez, Personal Trainer, Tu mejor versión">
+        </div>
+      </div>
+      </div>
       <div class="hero-texto">
         <div class="etiqueta reveal desde-izq" data-campo="portada.etiqueta">Personal Trainer en Meta GYM</div>
         <h1 class="display degradado reveal desde-izq d1" data-campo="portada.titulo">Haz tu cambio hoy mismo</h1>
         <p class="suave reveal desde-izq d2" data-campo="portada.descripcion">Profesor de Educación Física titulado. Entrenamiento personalizado de acuerdo a tus condiciones físicas, en Meta GYM o desde donde estés.</p>
-        <a class="boton reveal d3" href="#planes" data-campo="portada.boton">ÚNETE AHORA</a>
+        <div class="hero-botones reveal d3">
+          <a class="boton" href="#planes" data-campo="portada.boton">ÚNETE AHORA</a>
+          <a class="boton boton-borde" href="#planes">Ver planes</a>
+        </div>
       </div>
     </div>
   </section>
@@ -274,6 +323,20 @@
       var num=(c.contacto&&c.contacto.whatsapp)||'56932393331';
       var nombre=(c.contacto&&c.contacto.nombre)||'Bastian';
 
+      if(c.portada && Array.isArray(c.portada.fotos)){
+        var fotos=c.portada.fotos.filter(function(f){return f && f.foto;});
+        if(fotos.length){
+          var car=document.getElementById('carrusel');
+          car.querySelectorAll('img').forEach(function(im){im.remove();});
+          fotos.slice().reverse().forEach(function(f,i){
+            var im=document.createElement('img');
+            im.src=f.foto; im.alt=f.texto||'Clases de entrenamiento';
+            im.setAttribute('data-texto',f.texto||'');
+            car.insertBefore(im,car.firstChild);
+          });
+        }
+      }
+
       if(Array.isArray(c.planes) && c.planes.length){
         document.getElementById('lista-planes').innerHTML=c.planes.map(function(p,i){
           var precios=(p.precios||[]).map(function(x){
@@ -312,6 +375,28 @@
       }
     }
 
+    function carrusel(){
+      var car=document.getElementById('carrusel'); if(!car || car.dataset.listo) return; car.dataset.listo='1';
+      var fotos=[].slice.call(car.querySelectorAll('img'));
+      var puntos=document.getElementById('puntos'), rotulo=document.getElementById('rotulo'), barra=document.getElementById('barra');
+      if(!fotos.length) return;
+      puntos.innerHTML=fotos.map(function(_,i){return '<button type="button" aria-label="Ver foto '+(i+1)+'"></button>';}).join('');
+      var botones=[].slice.call(puntos.children), actual=0, timer=null;
+      function mostrar(i){
+        actual=i;
+        fotos.forEach(function(f,j){f.classList.toggle('activa',j===i)});
+        botones.forEach(function(p,j){p.classList.toggle('on',j===i)});
+        var t=fotos[i].getAttribute('data-texto')||'';
+        rotulo.textContent=t; rotulo.style.display=t?'':'none';
+        barra.style.width=((i+1)/fotos.length*100)+'%';
+      }
+      function siguiente(){ mostrar((actual+1)%fotos.length); }
+      function reiniciar(){ clearInterval(timer); if(fotos.length>1) timer=setInterval(siguiente,4500); }
+      botones.forEach(function(bt,i){ bt.addEventListener('click',function(){ mostrar(i); reiniciar(); }); });
+      puntos.style.display=fotos.length>1?'':'none';
+      mostrar(0); reiniciar();
+    }
+
     function animar(){
       var els=document.querySelectorAll('.reveal:not(.visible):not([data-obs])');
       els.forEach(function(e){e.setAttribute('data-obs','1')});
@@ -326,8 +411,8 @@
       .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
       .then(function(c){ try{ aplicar(c); }catch(e){ console.error('Error al aplicar contenido', e); } })
       .catch(function(e){ console.warn('No se pudo cargar contenido.json, se usa el contenido de respaldo', e); })
-      .then(animar);
-    setTimeout(animar,1500); // por si el archivo tarda en cargar
+      .then(function(){ carrusel(); animar(); });
+    setTimeout(function(){ carrusel(); animar(); },1500); // por si el archivo tarda en cargar
   })();
 </script>
 </body>

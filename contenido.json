@@ -4,7 +4,23 @@
     "titulo": "Haz tu cambio hoy mismo",
     "descripcion": "Profesor de Educación Física titulado. Entrenamiento personalizado de acuerdo a tus condiciones físicas, en Meta GYM o desde donde estés.",
     "boton": "ÚNETE AHORA",
-    "logo": "logo.png"
+    "logo": "logo.png",
+    "fotos": [
+      {
+        "foto": "fotos/grupo-1.jpg",
+        "texto": "Entrena en equipo"
+      },
+      {
+        "foto": "fotos/grupo-2.jpg",
+        "texto": "Clases en Meta GYM"
+      },
+      {
+        "foto": "fotos/grupo-3.jpg",
+        "texto": "Tu mejor versión"
+      }
+    ],
+    "foto_lateral": "fotos/entrenamiento.jpg",
+    "texto_lateral": "Entrenamiento individual"
   },
   "planes_titulo": "Planes de entrenamiento",
   "planes_subtitulo": "Personalizados de acuerdo a tus condiciones físicas",
