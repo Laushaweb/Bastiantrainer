@@ -22,6 +22,47 @@
     "foto_lateral": "fotos/entrenamiento.jpg",
     "texto_lateral": "Entrenamiento individual"
   },
+  "sobre_mi": {
+    "etiqueta": "Sobre mí",
+    "titulo": "Bastian Ortubia",
+    "texto": "Soy Profesor de Educación Física titulado de la Universidad de Tarapacá, con especialidad en alto rendimiento. Entreno desde los 17 años y compito en fisicoculturismo en la categoría Men's Physique, donde fui campeón overall de Mister Arica en 2023 y 2024. Hoy uso esa experiencia para ayudarte a lograr tu mejor versión, con un entrenamiento adaptado a tus condiciones físicas.",
+    "frase": "\"Prefiero la calidad del ejercicio que la cantidad\"",
+    "fotos": [
+      {
+        "foto": "fotos/logro-1.jpg",
+        "texto": "Mister Arica 2024",
+        "credito": ""
+      },
+      {
+        "foto": "fotos/logro-2.jpg",
+        "texto": "Men's Physique · Overall",
+        "credito": ""
+      },
+      {
+        "foto": "fotos/logro-3.jpg",
+        "texto": "Men's Physique",
+        "credito": "Foto: Chroma Photography"
+      }
+    ],
+    "logros": [
+      {
+        "titulo": "Mister Arica 2023",
+        "detalle": "1er lugar overall"
+      },
+      {
+        "titulo": "Mister Arica 2024",
+        "detalle": "1er lugar overall"
+      },
+      {
+        "titulo": "Profesor de Ed. Física",
+        "detalle": "UTA · especialidad en alto rendimiento"
+      },
+      {
+        "titulo": "+9 años",
+        "detalle": "entrenando"
+      }
+    ]
+  },
   "planes_titulo": "Planes de entrenamiento",
   "planes_subtitulo": "Personalizados de acuerdo a tus condiciones físicas",
   "planes": [

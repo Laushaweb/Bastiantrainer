@@ -46,6 +46,48 @@ content:
             label: Texto de la foto pequeña
             type: string
 
+      - name: sobre_mi
+        label: Sobre mí
+        type: object
+        fields:
+          - name: etiqueta
+            label: Texto pequeño sobre el título
+            type: string
+          - name: titulo
+            label: Título
+            type: string
+          - name: texto
+            label: Biografía
+            type: text
+          - name: frase
+            label: Frase destacada
+            type: string
+          - name: fotos
+            label: Fotos (van cambiando solas)
+            type: object
+            list: true
+            fields:
+              - name: foto
+                label: Foto
+                type: image
+              - name: texto
+                label: Texto sobre la foto (opcional)
+                type: string
+              - name: credito
+                label: Crédito del fotógrafo (opcional)
+                type: string
+          - name: logros
+            label: Logros
+            type: object
+            list: true
+            fields:
+              - name: titulo
+                label: Logro (ej. Mister Arica 2024)
+                type: string
+              - name: detalle
+                label: Detalle (ej. 1er lugar overall)
+                type: string
+
       - name: planes_titulo
         label: Título de la sección de planes
         type: string

@@ -63,8 +63,9 @@
   .rotulo,.puntos,.barra{position:absolute;z-index:2}
   .rotulo{left:14px;bottom:12px;font-family:'Anton',sans-serif;font-style:italic;text-transform:uppercase;font-size:18px;letter-spacing:.5px;text-shadow:0 2px 12px rgba(0,0,0,.7)}
   .carrusel{grid-column:1 / -1}
-  .carrusel img{object-position:50% 72%;opacity:0;transition:opacity 1s ease,transform 6s ease;transform:scale(1.03)}
-  .carrusel img.activa{opacity:1;transform:scale(1.09)}
+  .carrusel img,.carrusel-bio img{opacity:0;transition:opacity 1s ease,transform 6s ease;transform:scale(1.03)}
+  .carrusel img{object-position:50% 72%}
+  .carrusel img.activa,.carrusel-bio img.activa{opacity:1;transform:scale(1.09)}
   .puntos{right:14px;top:16px;display:flex;gap:6px}
   .puntos button{width:24px;height:24px;padding:10px 0;border:0;background:none;cursor:pointer}
   .puntos button::before{content:"";display:block;height:4px;background:rgba(242,245,247,.4)}
@@ -73,6 +74,25 @@
   .tile-logo{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%,#12212B,#070C10)}
   .tile-logo::after{display:none}
   .tile-logo img{position:static;width:96px;height:96px;object-fit:contain}
+
+  /* Sobre mí */
+  .bio{padding:64px 0;border-top:1px solid #16222A}
+  .bio .contenedor{display:flex;flex-direction:column;gap:28px}
+  .bio-cabecera{display:flex;flex-direction:column;gap:8px}
+  .bio h2{font-size:48px}
+  .bio-marco{position:relative;max-width:460px;width:100%}
+  .bio-marco::before{content:"";position:absolute;inset:14px -14px -14px 14px;border:2px solid var(--acento);pointer-events:none}
+  .carrusel-bio{position:relative;aspect-ratio:4/5;width:100%}
+  .carrusel-bio img{object-position:50% 35%}
+  .credito{position:absolute;right:12px;bottom:10px;z-index:2;font-size:11px;color:rgba(242,245,247,.75)}
+  .bio-texto{display:flex;flex-direction:column;gap:20px}
+  .bio-texto p{margin:0;font-size:17px;color:#D5DDE2}
+  .frase{margin:0;padding:4px 0 4px 18px;border-left:3px solid var(--acento);font-family:'Anton',sans-serif;font-style:italic;text-transform:uppercase;font-size:26px;line-height:1.15}
+  .logros{display:grid;grid-template-columns:1fr 1fr;gap:12px;list-style:none;margin:0;padding:0}
+  .logro{background:var(--tarjeta);border:1px solid var(--borde);padding:16px;display:flex;flex-direction:column;gap:8px}
+  .logro svg{width:26px;height:26px;color:var(--acento)}
+  .logro strong{font-family:'Anton',sans-serif;font-style:italic;font-weight:400;text-transform:uppercase;font-size:20px;line-height:1.05}
+  .logro span{font-size:14px;color:var(--suave);line-height:1.4}
 
   /* Planes */
   .planes{background:var(--fondo-2);padding:64px 0}
@@ -125,12 +145,23 @@
     .collage{margin:0;grid-template-columns:1.35fr 1fr;grid-template-rows:290px 250px;gap:14px;transform:skewX(-8deg)}
     .carrusel{grid-column:auto;grid-row:1 / 3}
     .carrusel img{object-position:50% 80%}
-    .tile img,.carrusel img{transform:skewX(8deg) scale(1.2)}
-    .carrusel img.activa{transform:skewX(8deg) scale(1.27)}
-    .tile-logo img{transform:skewX(8deg);width:150px;height:150px}
-    .rotulo,.puntos{transform:skewX(8deg)}
-    .rotulo{left:28px;bottom:20px;font-size:22px}
-    .puntos{right:34px;top:20px}
+    .collage .tile img{transform:skewX(8deg) scale(1.2)}
+    .collage .carrusel img.activa{transform:skewX(8deg) scale(1.27)}
+    .collage .tile-logo img{transform:skewX(8deg);width:150px;height:150px}
+    .collage .rotulo,.collage .puntos{transform:skewX(8deg)}
+    .collage .rotulo{left:28px;bottom:20px;font-size:22px}
+    .collage .puntos{right:34px;top:20px}
+    .bio{padding:96px 0}
+    .bio .contenedor{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:20px 72px;align-items:end}
+    .bio-texto{align-self:start}
+    .bio-cabecera{grid-column:2;grid-row:1}
+    .bio-marco{grid-column:1;grid-row:1 / 3;justify-self:center}
+    .bio-texto{grid-column:2;grid-row:2}
+    .bio h2{font-size:72px}
+    .bio-texto p{font-size:18px}
+    .frase{font-size:32px}
+    .logro{padding:20px}
+    .logro strong{font-size:22px}
     .planes{padding:88px 0}
     .titulo-seccion h2{font-size:72px}
     .grilla-planes{grid-template-columns:repeat(3,1fr)}
@@ -163,7 +194,7 @@
   @media (prefers-reduced-motion:reduce){
     .js .reveal{opacity:1;transform:none;transition:none}
     .plan,.plan img,.boton{transition:none}
-    .carrusel img,.carrusel img.activa{transition:opacity .4s ease}
+    .carrusel img,.carrusel img.activa,.carrusel-bio img,.carrusel-bio img.activa{transition:opacity .4s ease}
   }
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
@@ -177,6 +208,7 @@
       <span>Bastian Ortubia</span>
     </a>
     <nav class="nav-links">
+      <a class="texto" href="#sobre-mi">Sobre mí</a>
       <a class="texto" href="#planes">Planes</a>
       <a class="texto" href="#contacto">Contacto</a>
       <a class="boton" href="#planes">Únete</a>
@@ -215,6 +247,37 @@
           <a class="boton" href="#planes" data-campo="portada.boton">ÚNETE AHORA</a>
           <a class="boton boton-borde" href="#planes">Ver planes</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SOBRE MÍ (textos, fotos y logros editables en contenido.json / Pages CMS) ===== -->
+  <section class="bio" id="sobre-mi">
+    <div class="contenedor">
+      <div class="bio-cabecera reveal desde-izq">
+        <div class="etiqueta" data-campo="sobre_mi.etiqueta">Sobre mí</div>
+        <h2 class="display degradado" data-campo="sobre_mi.titulo">Bastian Ortubia</h2>
+      </div>
+      <div class="bio-marco reveal zoom">
+        <div class="tile carrusel-bio" id="carrusel-bio">
+          <img class="activa" src="fotos/logro-1.jpg" alt="Bastian en el Mister Arica 2024" data-texto="Mister Arica 2024">
+          <img src="fotos/logro-2.jpg" alt="Bastian con su medalla de Men's Physique Overall" data-texto="Men's Physique · Overall">
+          <img src="fotos/logro-3.jpg" alt="Bastian compitiendo en Men's Physique" data-texto="Men's Physique" data-credito="Foto: Chroma Photography">
+          <div class="barra"></div>
+          <div class="rotulo"></div>
+          <div class="puntos"></div>
+          <div class="credito"></div>
+        </div>
+      </div>
+      <div class="bio-texto">
+        <p class="reveal d1" data-campo="sobre_mi.texto">Soy Profesor de Educación Física titulado de la Universidad de Tarapacá, con especialidad en alto rendimiento. Entreno desde los 17 años y compito en fisicoculturismo en la categoría Men's Physique, donde fui campeón overall de Mister Arica en 2023 y 2024. Hoy uso esa experiencia para ayudarte a lograr tu mejor versión, con un entrenamiento adaptado a tus condiciones físicas.</p>
+        <blockquote class="frase reveal d2" data-campo="sobre_mi.frase">"Prefiero la calidad del ejercicio que la cantidad"</blockquote>
+        <ul class="logros" id="lista-logros">
+          <li class="logro reveal d1"><strong>Mister Arica 2023</strong><span>1er lugar overall</span></li>
+          <li class="logro reveal d2"><strong>Mister Arica 2024</strong><span>1er lugar overall</span></li>
+          <li class="logro reveal d1"><strong>Profesor de Ed. Física</strong><span>UTA · especialidad en alto rendimiento</span></li>
+          <li class="logro reveal d2"><strong>+9 años</strong><span>entrenando</span></li>
+        </ul>
       </div>
     </div>
   </section>
@@ -323,18 +386,37 @@
       var num=(c.contacto&&c.contacto.whatsapp)||'56932393331';
       var nombre=(c.contacto&&c.contacto.nombre)||'Bastian';
 
-      if(c.portada && Array.isArray(c.portada.fotos)){
-        var fotos=c.portada.fotos.filter(function(f){return f && f.foto;});
-        if(fotos.length){
-          var car=document.getElementById('carrusel');
-          car.querySelectorAll('img').forEach(function(im){im.remove();});
-          fotos.slice().reverse().forEach(function(f,i){
-            var im=document.createElement('img');
-            im.src=f.foto; im.alt=f.texto||'Clases de entrenamiento';
-            im.setAttribute('data-texto',f.texto||'');
-            car.insertBefore(im,car.firstChild);
-          });
-        }
+      function ponerFotos(id, lista){
+        if(!Array.isArray(lista)) return;
+        var fotos=lista.filter(function(f){return f && f.foto;});
+        if(!fotos.length) return;
+        var car=document.getElementById(id); if(!car) return;
+        car.querySelectorAll('img').forEach(function(im){im.remove();});
+        fotos.slice().reverse().forEach(function(f){
+          var im=document.createElement('img');
+          im.src=f.foto; im.alt=f.texto||'Foto';
+          im.setAttribute('data-texto',f.texto||'');
+          if(f.credito) im.setAttribute('data-credito',f.credito);
+          car.insertBefore(im,car.firstChild);
+        });
+      }
+      ponerFotos('carrusel', c.portada && c.portada.fotos);
+      ponerFotos('carrusel-bio', c.sobre_mi && c.sobre_mi.fotos);
+
+      if(c.sobre_mi && Array.isArray(c.sobre_mi.logros) && c.sobre_mi.logros.length){
+        var ico={
+          trofeo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>',
+          titulo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M22 9v5"/></svg>',
+          pesa:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7v10M18 7v10M3 9v6M21 9v6M6 12h12"/></svg>'
+        };
+        function icono(t){ t=(t||'').toLowerCase();
+          if(/mister|campe|lugar|overall|copa|podio/.test(t)) return ico.trofeo;
+          if(/profesor|t[ií]tulo|universidad|uta|curso|certific/.test(t)) return ico.titulo;
+          return ico.pesa; }
+        document.getElementById('lista-logros').innerHTML=c.sobre_mi.logros.map(function(l,i){
+          return '<li class="logro reveal d'+((i%2)+1)+'">'+icono((l.titulo||'')+' '+(l.detalle||''))+
+            '<strong>'+esc(l.titulo)+'</strong>'+(l.detalle?'<span>'+esc(l.detalle)+'</span>':'')+'</li>';
+        }).join('');
       }
 
       if(Array.isArray(c.planes) && c.planes.length){
@@ -375,10 +457,11 @@
       }
     }
 
-    function carrusel(){
-      var car=document.getElementById('carrusel'); if(!car || car.dataset.listo) return; car.dataset.listo='1';
+    function carrusel(car){
+      if(!car || car.dataset.listo) return; car.dataset.listo='1';
       var fotos=[].slice.call(car.querySelectorAll('img'));
-      var puntos=document.getElementById('puntos'), rotulo=document.getElementById('rotulo'), barra=document.getElementById('barra');
+      var puntos=car.querySelector('.puntos'), rotulo=car.querySelector('.rotulo'),
+          barra=car.querySelector('.barra'), credito=car.querySelector('.credito');
       if(!fotos.length) return;
       puntos.innerHTML=fotos.map(function(_,i){return '<button type="button" aria-label="Ver foto '+(i+1)+'"></button>';}).join('');
       var botones=[].slice.call(puntos.children), actual=0, timer=null;
@@ -388,6 +471,7 @@
         botones.forEach(function(p,j){p.classList.toggle('on',j===i)});
         var t=fotos[i].getAttribute('data-texto')||'';
         rotulo.textContent=t; rotulo.style.display=t?'':'none';
+        if(credito){ var cr=fotos[i].getAttribute('data-credito')||''; credito.textContent=cr; credito.style.display=cr?'':'none'; }
         barra.style.width=((i+1)/fotos.length*100)+'%';
       }
       function siguiente(){ mostrar((actual+1)%fotos.length); }
@@ -396,6 +480,7 @@
       puntos.style.display=fotos.length>1?'':'none';
       mostrar(0); reiniciar();
     }
+    function carruseles(){ document.querySelectorAll('#carrusel, #carrusel-bio').forEach(carrusel); }
 
     function animar(){
       var els=document.querySelectorAll('.reveal:not(.visible):not([data-obs])');
@@ -411,8 +496,8 @@
       .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
       .then(function(c){ try{ aplicar(c); }catch(e){ console.error('Error al aplicar contenido', e); } })
       .catch(function(e){ console.warn('No se pudo cargar contenido.json, se usa el contenido de respaldo', e); })
-      .then(function(){ carrusel(); animar(); });
-    setTimeout(function(){ carrusel(); animar(); },1500); // por si el archivo tarda en cargar
+      .then(function(){ carruseles(); animar(); });
+    setTimeout(function(){ carruseles(); animar(); },1500); // por si el archivo tarda en cargar
   })();
 </script>
 </body>
